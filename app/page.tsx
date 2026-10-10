@@ -1,19 +1,35 @@
-import { Button } from "@/components/ui/button"
+import AnnouncementBar from "@/components/shadcn-space/blocks/announcement-bar-03/announcement-bar";
+import Bentogrid from "@/components/shadcn-space/blocks/bento-grid-02";
+import Contact from "@/components/shadcn-space/blocks/contact-06/contact";
+import Faq from "@/components/shadcn-space/blocks/faq-04/faq";
+import Feature from "@/components/shadcn-space/blocks/feature-24/feature";
+import Footer from "@/components/shadcn-space/blocks/footer-07/footer";
+import HeroSection from "@/components/shadcn-space/blocks/hero-18/hero";
+import NavbarBlock from "@/components/shadcn-space/blocks/navbar-04";
+import Pricing from "@/components/shadcn-space/blocks/pricing-09/pricing";
+
+const sections = [
+  { id: "hero", Component: HeroSection },
+  { id: "features", Component: Feature },
+  { id: "workspace", Component: Bentogrid },
+  { id: "pricing", Component: Pricing },
+  { id: "faq", Component: Faq },
+  { id: "contact", Component: Contact },
+];
 
 export default function Page() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
-      </div>
+    <div className="relative flex min-h-svh flex-col">
+      <AnnouncementBar />
+      <NavbarBlock />
+      <main className="flex-1">
+        {sections.map(({ id, Component }) => (
+          <section key={id} id={id} className="scroll-mt-16">
+            <Component />
+          </section>
+        ))}
+      </main>
+      <Footer />
     </div>
-  )
+  );
 }
